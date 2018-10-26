@@ -10,26 +10,63 @@ class App extends Component {
                             phone_number: "+33 6 37 48 45 27",
                             email: "aflalojulien@gmail.com",
                             img: "Picme.jpg"},
+                            {name: "Julien Aflalo",
+                            phone_number: "+33 6 37 48 45 27",
+                            email: "aflalojulien@gmail.com",
+                            img: "Picme.jpg"},
+                            {name: "Julien Aflalo",
+                            phone_number: "+33 6 37 48 45 27",
+                            email: "aflalojulien@gmail.com",
+                            img: "Picme.jpg"},
+                            {name: "Julien Aflalo",
+                            phone_number: "+33 6 37 48 45 27",
+                            email: "aflalojulien@gmail.com",
+                            img: "Picme.jpg"},
+                            {name: "Julien Aflalo",
+                            phone_number: "+33 6 37 48 45 27",
+                            email: "aflalojulien@gmail.com",
+                            img: "Picme.jpg"},
+                            {name: "Julien Aflalo",
+                            phone_number: "+33 6 37 48 45 27",
+                            email: "aflalojulien@gmail.com",
+                            img: "Picme.jpg"},
+                            {name: "Julien Aflalo",
+                            phone_number: "+33 6 37 48 45 27",
+                            email: "aflalojulien@gmail.com",
+                            img: "Picme.jpg"},
+                            {name: "Julien Aflalo",
+                            phone_number: "+33 6 37 48 45 27",
+                            email: "aflalojulien@gmail.com",
+                            img: "Picme.jpg"},
+                            {name: "Julien Aflalo",
+                            phone_number: "+33 6 37 48 45 27",
+                            email: "aflalojulien@gmail.com",
+                            img: "Picme.jpg"},
+                            {name: "Julien Aflalo",
+                            phone_number: "+33 6 37 48 45 27",
+                            email: "aflalojulien@gmail.com",
+                            img: "Picme.jpg"},
                           ],
                   error: null,
                   isLoaded: false
                   };
   }
   componentDidMount(){
-    fetch("https://randomuser.me/api/")
+    fetch("https://randomuser.me/api/?results=10")
     .then(res => {
-      console.log(res);
+      // console.log(res);
       if (res.ok) this.setState({isLoaded: true});
       return res.json();
     })
     .then((result) => {
-      console.log("then");
-      console.log(result.results[0]);
-      let peopleApi = this.state.people;
-      peopleApi[0].name = result.results[0].name.first + " " + result.results[0].name.last;
-      peopleApi[0].phone_number = result.results[0].cell;
-      peopleApi[0].email = result.results[0].email;
-      peopleApi[0].img = result.results[0].picture.medium;
+      var peopleApi = this.state.people;
+      for (let i = 0; i < result.results.length; i++){
+        console.log(peopleApi[i]);
+        peopleApi[i].name = result.results[i].name.first + " " + result.results[0].name.last;
+        peopleApi[i].phone_number = result.results[i].cell;
+        peopleApi[i].email = result.results[i].email;
+        peopleApi[i].img = result.results[i].picture.medium;
+      }
       this.setState({people: peopleApi});
     })
     .catch(err => {
